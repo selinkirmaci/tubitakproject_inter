@@ -5,6 +5,8 @@ import {Sidebar} from "primereact/sidebar";
 import {AppBar,Toolbar,IconButton,Typography,InputBase,fade,makeStyles} from "@material-ui/core";
 import AppBarShort from "./AppBarShort";
 import EventCard from "./EventCard";
+import axios from "axios";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -60,23 +62,30 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 export default class  UserHomePage extends Component
 {
-
+    column = [
+        {id: "name"},
+        {id: "surname"},
+        {id: "username"},
+        {id: "email"},
+        {id: "tcKimlikNo"},
+        {id: "paswword"},
+    ];
     constructor() {
         super();
         this.state = {
             suggestions: null,
             visibleLeft: false,
             postArray: [
-                {title: "Event2",start:"Event2 start date",end:"Event end date",location:"event2 location",leftcap:"40"},
-                {title: "Event3",start:"Event3 start date",end:"Event end date",location:"event3 location",leftcap:"205"},
-                {title: "Event4",start:"Event4 start date",end:"Event end date",location:"event4 location",leftcap:"112"},
-                {title: "Event5",start:"Event5 start date",end:"Event end date",location:"event5 location",leftcap:"220"},
-                {title: "Event6",start:"Event6 start date",end:"Event end date",location:"event6 location",leftcap:"120"},
-            ]
+                {id: "name",start:"Event2 start date",end:"Event end date",location:"event2 location",leftcap:"40"},
+                {id: "name",start:"Event2 start date",end:"Event end date",location:"event2 location",leftcap:"40"},
+            ],
+            eventsData: []
         };
-        this.names = ['Audi', 'BMW', 'Fiat', 'Ford', 'Honda', 'Jaguar', 'Mercedes', 'Renault', 'Volvo'];
+        this.eventNames = [];
+        this.names = [];
     }
     suggest(event) {
         let results = this.names.filter((names) => {
@@ -85,24 +94,40 @@ export default class  UserHomePage extends Component
 
         this.setState({ suggestions: results });
     }
+    componentDidMount()
+    {
+        axios.get("/events/current").then(response =>{
+            this.setState({eventsData: response.data});
+                console.log(response);
+        });
+        console.log(this.state.eventsData);
+    }
+
     render() {
         return (
             <div className={"root"}>
-               <AppBarShort title = "Home Page"></AppBarShort>
+               <AppBarShort names = {this.eventNames} title = "Home Page"></AppBarShort>
 
             <div style = {{justifyContent: 'center'}}>
                 <br/>
                 <Grid container spacing = {3}>
                     {
-                        this.state.postArray.map((post , index) =>
+                        this.state.eventsData.map((event , index) =>
                             {
+                                this.names.push(event.eventName)
+                                this.eventNames.push(event.eventName)
                                 return(
                                     <Grid item xs = {3}>
-                                        <EventCard   title = {post.title}
-                                                    start={ post.start}
-                                                    end={post.end}
-                                                    location={post.location}
-                                                    leftcap={post.leftcap}/>
+                                        <EventCard  title = {event.eventName}
+                                                    start = {event.startDate}
+                                                    end={event.endDate}
+                                                    location={event.longitude}
+                                                    lat = {event.latitude}
+                                                    lng={event.longitude}
+                                                    leftcap = {event.leftCapacity}
+                                                    cap = {event.capacity}
+                                                    link = {event.link}
+                                        />
                                     </Grid>
                                 )
                             }

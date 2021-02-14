@@ -16,11 +16,11 @@ export default class AppBarShort extends Component
             suggestions: null,
             visibleLeft: false,
         };
-        this.names = ['Audi', 'BMW', 'Fiat', 'Ford', 'Honda', 'Jaguar', 'Mercedes', 'Renault', 'Volvo'];
+        this.names = [];
 
     }
     suggest(event) {
-        let results = this.names.filter((names) => {
+        let results = this.props.names.filter((names) => {
             return names.toLowerCase().startsWith(event.query.toLowerCase());
         });
 
@@ -54,9 +54,6 @@ export default class AppBarShort extends Component
                         </Typography>
                         <AutoComplete  size={130} placeholder="Search..." style={{marginLeft:'3em'}} value={this.state.names} onChange={(e) => this.setState({names: e.value})}
                                        suggestions={this.state.suggestions} completeMethod={this.suggest.bind(this)} />
-                        <IconButton style={{marginLeft:'.5em'}} className="icon-circle-">
-                            <AccountCircleIcon></AccountCircleIcon>
-                        </IconButton>
                     </Toolbar>
                 </AppBar>
             </div>

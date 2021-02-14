@@ -1,9 +1,13 @@
-import React from "react";
-import {GoogleMap} from "react-google-maps";
+import React,{useState} from "react";
+import {GoogleMap,Marker} from "react-google-maps";
 
-export default function Map()
+export default function Map(props)
 {
+    //const [selectedPlace,setSelectedPlace] = useState(null);
     return (
-        <GoogleMap defaultZoom={10} defaultCenter={{lat:45.421532,lng:-75.697189}}></GoogleMap>
+        <GoogleMap defaultZoom={18} defaultCenter={{lat:props.lat,lng: props.lng}}>
+            <Marker position={{lat:props.lat,lng: props.lng}}>
+            </Marker>
+        </GoogleMap>
     );
 }

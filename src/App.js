@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from "./Login";
@@ -7,8 +7,12 @@ import UserHomePage from "./UserHomePage";
 import SignUp from "./SignUp";
 import { BrowserRouter as Router, Route, Link,Switch } from 'react-router-dom';
 import CompanyPage from "./CompanyPage";
-
-
+import axios from "axios";
+import MapWithSearch from "./MapWithSearch";
+import MaterialTableDemo from "./MaterialTableDemo";
+import EventTable from "./adminpage/EventTable";
+import Chart from "./Chart";
+import {ToastDemo} from "./ToastDemo";
 /*
 function App() {
   return (
@@ -31,6 +35,17 @@ function App() {
   );
 }
  */
+class App extends Component
+{
+    render()
+    {
+        return(
+            <div>
+               <ToastDemo/>
+            </div>
+        );
+    }
+}
 function Routes()
 {
   return(
@@ -41,9 +56,7 @@ function Routes()
           <Route path = "/signup" exact component={SignUp}></Route>
           <Route path = "/homepage" exact component={UserHomePage}></Route>
           <Route path = "/profile" exact component={UserProfile}></Route>
-            <Route path = "/companypage" exact component={CompanyPage}></Route>
-
-
+          <Route path = "/companypage" exact component={EventTable}></Route>
 
         </Switch>
       </Router>

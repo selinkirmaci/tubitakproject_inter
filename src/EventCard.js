@@ -23,8 +23,8 @@ export default function ImgMediaCard(props) {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    alt="Contemplative Reptile"
                     height="140"
+                    width="140"
                     image="/images/t-logo.jpg"
                     title="Contemplative Reptile"
                 />
@@ -32,7 +32,6 @@ export default function ImgMediaCard(props) {
                     <Typography gutterBottom variant="h5" component="h2">
                         {props.title}
                     </Typography>
-
                 </CardContent>
             </CardActionArea>
             <CardActions>
@@ -44,7 +43,12 @@ export default function ImgMediaCard(props) {
                     start = {props.start}
                     end = {props.end}
                     location = {props.location}
+                    lat = {props.lat}
+                    lng= {props.lng}
                     leftcap ={props.leftcap}
+                    cap = {props.cap}
+                    eventName = {props.title}
+                    link = {props.link}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />

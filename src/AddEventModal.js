@@ -11,6 +11,7 @@ import {Calendar} from "primereact/calendar";
 import {InputNumber} from 'primereact/inputnumber';
 import {GMap} from 'primereact/gmap';
 import Image from 'react-bootstrap/Image'
+import MapWithSearch from "./MapWithSearch";
 
 export default function AddEventModal(props)  {
     return (
@@ -23,7 +24,6 @@ export default function AddEventModal(props)  {
             <Modal.Header style={{maxHeight:'10em'}}>
             </Modal.Header>
             <Modal.Body>
-
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>REGISTER</Button>

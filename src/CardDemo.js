@@ -49,7 +49,7 @@ export class CardDemo extends Component {
 
         return (
             <div>
-                <Card title="Advanced Card" subTitle="Subtitle" style={{marginLeft:'1.5em',width: '300px'}}
+                <Card title="Advanced Card" subtitle="Subtitle" style={{marginLeft:'1.5em',width: '300px'}}
                       className="ui-card-shadow" footer={footer} header={header}>
                     <Card.Header>
                         <img alt="Card" src="/images/square.png"/>

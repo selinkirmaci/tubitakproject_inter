@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 import {useTheme} from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import ListForCompany from "./ListForCompany";
+import MapWithSearch from "./MapWithSearch";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -115,7 +116,7 @@ function UserProfile() {
                                 <ListForCompany></ListForCompany>
                             </TabPanel>
                             <TabPanel value={value} index={1} dir={theme.direction}>
-                                Calendar
+                                <MapWithSearch/>
                             </TabPanel>
 
                         </SwipeableViews>
